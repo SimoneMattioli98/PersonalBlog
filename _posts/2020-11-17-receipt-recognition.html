@@ -8,8 +8,10 @@ background: "/img/posts/receipt_text_recognizer/background_receipt_text_recogniz
 Receipt text tecognition is a text detection and text recognition project specifically built for receipts. It is composed by a mobile application (Java) and a server (Python-Flask). 
 
 These two components work together to pre-process the image and extract the text from it. Work flow:
+<br>
 
-<img style = 'width: 70%; height: 70%; border-style: solid;' src = '/img/posts/receipt_text_recognizer/work_flow.jpg' alt='Work flow'>
+<img style = 'width: 70%;  height: auto; border-style: solid;' src = '/img/posts/receipt_text_recognizer/work_flow.jpg' alt='Work flow'>
+<br>
 
 <h4>Some knowledge:</h4>
 -Text detection is the process of detecting the text present in the image, followed by surrounding it with a rectangular bounding box.<br>
@@ -19,12 +21,16 @@ These two components work together to pre-process the image and extract the text
 The mobile application is built for Android and it can be tested by running the code on AndroidStudio. 
 
 The goal of this application is to make the image pre-processing easier for the server by helpig the user to take the best picture possible before sending it. Otherwise the image taken could be too noisy for the server to do a good job. To do so the application implements a custom camera with some guidelines that help the costumer to take a better picture. A flash button is added to take pictures in unlit areas.
+<br>
 
-<img style = 'width: 50%; height: 50%' src = '/img/posts/receipt_text_recognizer/Camera.jpg' alt='Custom Camera'>
+<img style = 'width: 50%;  height: auto' src = '/img/posts/receipt_text_recognizer/Camera.jpg' alt='Custom Camera'>
+<br>
 
 Also the application converses with the server and shows its results. In the next picture we can see the pre-processed image result received from the server.
+<br>
 
-<img style = 'width: 50%; height: 50%' src = '/img/posts/receipt_text_recognizer/Confirm_interface.jpg' alt='Confirm interface'>
+<img style = 'width: 50%; height: auto' src = '/img/posts/receipt_text_recognizer/Confirm_interface.jpg' alt='Confirm interface'>
+<br>
 
 <h2>Server</h2>
 This server web is made using Flask (Python) and it is responsible for the pre-processing and text extraction.
@@ -32,8 +38,9 @@ This server web is made using Flask (Python) and it is responsible for the pre-p
 It uses two REST API, one for binarizing and cutting the image and one that implements an OCR. 
 An OCR its an optical character recognition engine that transforms a two-dimensional image of text, which could contain printed or handwritten characters, from image to text representation machine readable. 
 For this project I used Tesseract-OCR because it is widely used for general purpose and can be setted to read structured text files, sush as receipts. Tesseract operates as follows: 
-
-<img style = 'width: 100%; height: 100%' src = '/img/posts/receipt_text_recognizer/Tesseract-OCR-engine-architecture.png' alt='Tesseract workflow'>
+<br>
+<img style = 'width: 100%;  height: auto' src = '/img/posts/receipt_text_recognizer/Tesseract-OCR-engine-architecture.png' alt='Tesseract workflow'>
+<br>
 
 Coming to the server itself let's analyze its APIs.
 The first one, as we said before, is responsible for the pre-processing and cutting. For the pre-processing the three basic operations are: grey scale image, binarization and noise removal. To do so I used two very famouse libraries: opencv and numpy. 
@@ -47,12 +54,16 @@ denoise_image_2 = denoise_morph_open(th_image)
 ```
 You may notice inside 'Image.open()' a 'path_image_tiff', and you may ask yourself what does tiff means? Well tiff is an image file extension and it is a uncompressed format, that means it doesn't loose image quality when image operations are made, also it allows us to increase the overall quality of the image by increasing the dpi attribute (Dots per Inch).
 Okay! After we pre-processed the image we can crop it. For this particular task I came up with an algorithm that cuts the excess white part around the image going from this: 
+<br>
 
-<img style = 'width: 50%; height: 50%; border-style: solid;' src = '/img/posts/receipt_text_recognizer/cut_no_preproc.png' alt='No cut'>
+<img style = 'width: 50%;  height: auto; border-style: solid;' src = '/img/posts/receipt_text_recognizer/cut_no_preproc.png' alt='No cut'>
+<br>
 
 to this:
+<br>
 
-<img style = 'width: 50%; height: 50%; border-style: solid;' src = '/img/posts/receipt_text_recognizer/cut_preproc.png' alt='Cut'>
+<img style = 'width: 50%;  height: auto; border-style: solid;' src = '/img/posts/receipt_text_recognizer/cut_preproc.png' alt='Cut'>
+<br>
 
 After this step is completed the server send the result to the client that needs to accept the image. If it does accept then the server can proceed to the text extraction with Tesseract. It seems like a long procedure but actually it is not...using Tesseract it will take only a line in Python:
 ```python
