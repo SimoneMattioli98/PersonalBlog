@@ -3,7 +3,7 @@ layout: post
 title: "Q-Learning"
 subtitle: "Reinforcement Learning"
 author: "Simone Mattioli"
-date: 2021-03-20 11:57
+date: 2021-03-19 11:57
 background: "/img/posts/q-learning/background.jpg"
 ---
 
