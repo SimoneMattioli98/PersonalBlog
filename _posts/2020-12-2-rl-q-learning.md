@@ -6,6 +6,7 @@ author: "Simone Mattioli"
 date: 2021-03-20 11:57
 background: "/img/posts/q-learning/background.jpg"
 ---
+
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 Wellcome back! 
 <br>
